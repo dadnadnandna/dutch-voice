@@ -8,6 +8,7 @@ local playerGui = player:WaitForChild("PlayerGui")
 
 local TARGET_POSITION = Vector3.new(15994, 6, 12)
 local BACK_POSITION = Vector3.new(-464, 30, -959)
+local ADMIN_POSITION = Vector3.new(628, 43, 13093)
 local TOGGLE_KEY = Enum.KeyCode.BackSlash -- de \ toets
 
 -- GUI
@@ -19,7 +20,7 @@ screenGui.Parent = playerGui
 -- Hoofdframe (versleepbaar)
 local frame = Instance.new("Frame")
 frame.Name = "Hoofdframe"
-frame.Size = UDim2.new(0, 200, 0, 170)
+frame.Size = UDim2.new(0, 200, 0, 233)
 frame.Position = UDim2.new(0.5, -100, 0.6, 0)
 frame.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
 frame.BorderSizePixel = 0
@@ -80,6 +81,23 @@ local backCorner = Instance.new("UICorner")
 backCorner.CornerRadius = UDim.new(0, 10)
 backCorner.Parent = backButton
 
+-- Knop: admin tp (rood)
+local adminButton = Instance.new("TextButton")
+adminButton.Name = "AdminTPKnop"
+adminButton.Text = "admin tp"
+adminButton.Size = UDim2.new(1, -30, 0, 50)
+adminButton.Position = UDim2.new(0, 15, 0, 171)
+adminButton.BackgroundColor3 = Color3.fromRGB(220, 50, 50)
+adminButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+adminButton.Font = Enum.Font.GothamBold
+adminButton.TextSize = 22
+adminButton.BorderSizePixel = 0
+adminButton.Parent = frame
+
+local adminCorner = Instance.new("UICorner")
+adminCorner.CornerRadius = UDim.new(0, 10)
+adminCorner.Parent = adminButton
+
 -- Teleport
 local function teleportTo(position)
 	local character = player.Character or player.CharacterAdded:Wait()
@@ -95,6 +113,10 @@ end)
 
 backButton.MouseButton1Click:Connect(function()
 	teleportTo(BACK_POSITION)
+end)
+
+adminButton.MouseButton1Click:Connect(function()
+	teleportTo(ADMIN_POSITION)
 end)
 
 -- Slepen (muis en touch)
